@@ -1,4 +1,9 @@
-batStatus();
+if (Modernizr.batteryapi) {
+ batStatus();
+} else {
+	document.write('sadface :(');
+}
+
 
 const cs = document.getElementById("charge-status");
 
