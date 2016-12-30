@@ -20,3 +20,11 @@ body {
 	width:500px;
 	height:400px;
 }
+
+.hidden {display:none;}
+
+#charge-status {
+	transition 1s width;
+	//width:0;
+}
+
