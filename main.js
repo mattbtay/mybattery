@@ -1,18 +1,17 @@
-batStatus();
+//batStatus();
 
 function batStatus(){
+
 	navigator.getBattery().then(function(battery){
 		
-		var status = document.getElementById("status");
-
-
+		var status = document.getElementById("status-info");
 
 		status.innerHTML = `
-						<p>${battery.level * 100}%</p>
-						<p>${battery.charging}</p>
-						<p>${battery.chargingTime}</p>
-						<p>${(battery.dischargingTime / 60) / 60} hours</p>
-						`;
+			${ battery.level * 100 }%
+			${ battery.charging }
+			${ battery.chargingTime }
+			${ ( battery.dischargingTime / 60 ) / 60 } hours
+			`;
 
 	});
 }

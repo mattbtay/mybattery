@@ -1,3 +1,7 @@
+body {
+	background:#ecf0f1;
+}
+
 #status {
 	height:100vh;
 	display:flex;
@@ -6,7 +10,13 @@
 
 }
 
-#status p {
+.status-info p {
 	align-self:center;
 	padding:25px;
+}
+
+#charge {
+	display:block;
+	width:500px;
+	height:400px;
 }
