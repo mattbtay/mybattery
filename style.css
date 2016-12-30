@@ -1,0 +1,12 @@
+#status {
+	height:100vh;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+
+}
+
+#status p {
+	align-self:center;
+	padding:25px;
+}
