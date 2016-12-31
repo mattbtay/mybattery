@@ -1,12 +1,10 @@
-if (Modernizr.batteryapi) {
+	
  batStatus();
-} else {
-	document.write('sadface :(');
-}
+
 
 
 const cs = document.getElementById("charge-status");
-
+const csa = document.getElementById("charge-status-ani");
 function batStatus(){
 
 	navigator.getBattery().then(function(battery){
@@ -27,15 +25,30 @@ function batStatus(){
 
 		// full charge width = 281
 		cs.setAttribute('data-full', batPercent );
-		console.log( `${ batPercent } / ${ batLevel }` );
+		cs.setAttribute('width', batPercent);
+		csa.setAttribute('to', batPercent);
+		//console.log( `${ batPercent } / ${ batLevel }` );
 		
-		setTimeout(function(){
-			cs.setAttribute('width', batPercent);
-		}, 1000);
-
-		if (battery.charging === true) {
-			document.getElementById('charge-path').classList.remove('hidden');
+		
+		if (battery.charging === true ) {
+			document.getElementById('charge-path').classList.toggle('hidden');
 		}
+
+		// show hide the charging indicator	
+		updateCharge();
+
+			function updateCharge(){
+
+				const cp = document.getElementById('charge-path');
+
+				if (battery.charging === true ) {
+					cp.classList.remove('hidden');
+				} else {
+					cp.classList.add('hidden');
+				}
+		}
+
+		battery.addEventListener('chargingchange', updateCharge);
 
 
 	});

@@ -19,12 +19,28 @@ body {
 	display:block;
 	width:500px;
 	height:400px;
+	padding:0 15px;
 }
 
 .hidden {display:none;}
 
-#charge-status {
-	transition 1s width;
-	//width:0;
+.meta{
+	display:block;
+	position:absolute;
+	bottom:0;
+	width:98%;
+	padding:10px 1%;
+	margin:0;
 }
 
+a {
+	color:#231f20;
+}
+
+@media screen and (max-width:800px){
+	.meta {
+		text-align:center;
+		width:96%;
+		padding:2%;
+	}
+}
