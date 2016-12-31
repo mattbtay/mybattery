@@ -5,6 +5,8 @@
 
 const cs = document.getElementById("charge-status");
 const csa = document.getElementById("charge-status-ani");
+const cp = document.getElementById('charge-path');
+
 function batStatus(){
 
 	navigator.getBattery().then(function(battery){
@@ -13,15 +15,10 @@ function batStatus(){
 		let batLevel = battery.level * 100,
 			batPercent = battery.level * 281;
 
+		//let batPercent = battery.level = 125;
 
-		/*status.innerHTML = `
-			${ batLevel }%
-			${ battery.charging }
-			${ battery.chargingTime }
-			${ ( battery.dischargingTime / 60 ) / 60 } hours
-			`;*/
-
-		
+		//set battery status color
+		batColors();
 
 		// full charge width = 281
 		cs.setAttribute('data-full', batPercent );
@@ -37,18 +34,44 @@ function batStatus(){
 		// show hide the charging indicator	
 		updateCharge();
 
-			function updateCharge(){
+		function updateCharge(){
 
-				const cp = document.getElementById('charge-path');
+			
 
-				if (battery.charging === true ) {
-					cp.classList.remove('hidden');
-				} else {
-					cp.classList.add('hidden');
-				}
+			if (battery.charging === true ) {
+				cp.classList.remove('hidden');
+			} else {
+				cp.classList.add('hidden');
+			}
+		}
+
+		function levelChange(){
+
+			cs.setAttribute('width', batPercent);
+			cs.classList.add('bat-change');
+			setTimeout(function(){
+				cs.classList.remove('bat-change');
+			},300);
+
+		}
+
+		function batColors() {
+			switch( true ) {
+				case (batPercent <= 56):
+					cs.setAttribute('fill', '#c0392b');
+					break;
+
+				case (batPercent  >= 56 && batPercent <= 125):
+					cs.setAttribute('fill', '#f39c12');
+					break;
+
+				case (batPercent > 125):
+					cs.setAttribute('fill', '#2ecc71');
+			}
 		}
 
 		battery.addEventListener('chargingchange', updateCharge);
+		//battery.addEventListener('levelchange', levelChange);
 
 
 	});

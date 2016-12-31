@@ -33,11 +33,26 @@ body {
 	margin:0;
 }
 
+#charge-status{
+	transition:.3s all;
+	opacity:1;
+}
+
+.bat-change{
+	opacity:.2;
+
+}
+
 a {
 	color:#231f20;
 }
 
 @media screen and (max-width:800px){
+
+	#charge {
+		transform:rotate(-90deg);
+	}
+
 	.meta {
 		text-align:center;
 		width:96%;
